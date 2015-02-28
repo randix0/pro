@@ -1,0 +1,143 @@
+<footer>
+    <div class="footer-container">
+        <div class="footer">
+            <div class="footer-sub">
+                <div class="footer-float-w720px">
+                    <div class="footer-nav">
+                        <div><a href="">Contact Us</a></div>
+                        <div><a href="">Customer Care</a></div>
+                        <div><a href="">Careers</a></div>
+                        <div><a href="">Press</a></div>
+                    </div>
+
+                    <div class="footer-hours">
+                        <div>Opening hours</div>
+                        <div>11:00 - 19:00</div>
+                        <div>Mon - Fri</div>
+                        <div>Sat on Call</div>
+                    </div>
+                </div>
+
+                <div class="footer-credo">
+                    <div>I produce all of my goods with understanding that I am responsible of each single thing.</div>
+                    <div>I am using these as you do, and everytime I'm having fun and joy.</div>
+                    <div>I care.</div>
+                    <div>I do.</div>
+                </div>
+            </div>
+
+            <address class="copyright"><?php echo $this->getCopyright() ?></address>
+            <div class="social-buttons">
+                <a target="_blank" class="social-big facebook" href="https://www.facebook.com/PROSKUROVSKAYAofficial"></a>
+                <a target="_blank" class="social-big instagram" href="http://instagram.com/proskurovskaya"></a>
+                <a target="_blank" class="social-big tumblr" href="http://proskurovskaya.tumblr.com"></a>
+                <a target="_blank" class="social-big vkontakte" href="https://vk.com/proskurovskayaofficial"></a>
+                <a target="_blank" class="social-big youtube" href="https://www.youtube.com/channel/UCAnJgpSLvUZySELfh4hS49A"></a>
+                <a target="_blank" class="social-big soundcloud" href="https://soundcloud.com/proskurovskaya"></a>
+            </div>
+        </div>
+    </div>
+
+
+
+</footer>
+
+<script>
+/*
+     https://www.facebook.com/PROSKUROVSKAYAofficial
+     http://instagram.com/proskurovskaya
+     http://proskurovskaya.tumblr.com
+     https://vk.com/proskurovskayaofficial
+     https://www.youtube.com/channel/UCAnJgpSLvUZySELfh4hS49A
+     https://soundcloud.com/proskurovskaya
+*/
+
+
+
+    Slider = {
+        id: null,
+        currentItem: 0,
+        countItems: 0,
+        items: null,
+        timer: null,
+        init: function(id) {
+            if (typeof(id) == 'undefined') {
+                return false;
+            }
+
+            Slider.items = jQuery('.' + id + '-items img');
+            Slider.countItems = Slider.items.length;
+
+            if (Slider.items.length == 0) {
+                return false;
+            }
+
+            Slider.id = id;
+            dots = '';
+            for (i = 0; i < Slider.countItems; i++) {
+                dots += '<a data-id="' + i + '"></a>';
+            }
+            prevnext = '<a id="' + id + '-prev" class="' + id + '-prev">Prev</a><a id="' + id + '-next" class="' + id + '-next">Next</a>';
+            jQuery('.' + id).append('<div class="' + id +'-dots">' + dots + '</div>' + prevnext);
+
+            Slider.active(Slider.currentItem);
+            Slider.activeDot(Slider.currentItem);
+
+            jQuery('.' + id + '-prev').bind('click', function() {Slider.prev()});
+            jQuery('.' + id + '-next').bind('click', function() {Slider.next()});
+            jQuery('.' + id + '-dots a').bind('click', function() {Slider.activeDot(this)});
+        },
+        active: function(num) {
+            jQuery(Slider.items).removeClass('active');
+            jQuery(Slider.items[num]).addClass('active');
+            clearTimeout(Slider.timer);
+            Slider.timer = setTimeout(function() {Slider.next();}, 4000);
+        },
+        activeDot: function(num) {
+            if (typeof(num) == 'object') {
+                el = num;
+                num = jQuery(el).attr('data-id');
+                Slider.currentItem = num;
+                Slider.active(num);
+            }
+            jQuery('.' + Slider.id + '-dots a').removeClass('active');
+            jQuery('.' + Slider.id + '-dots a[data-id='+ num +']').addClass('active');
+        },
+        prev: function() {
+            if (Slider.currentItem == 0) {
+                Slider.currentItem = Slider.countItems - 1;
+            } else {
+                Slider.currentItem--;
+            }
+            Slider.active(Slider.currentItem);
+            Slider.activeDot(Slider.currentItem);
+        },
+        next: function() {
+            if (Slider.currentItem == Slider.countItems - 1) {
+                Slider.currentItem = 0;
+            } else {
+                Slider.currentItem++;
+            }
+            Slider.active(Slider.currentItem);
+            Slider.activeDot(Slider.currentItem);
+        }
+    }
+
+</script>
+
+<?php /*
+<div id="home-promo" class="home-promo">
+    <div class="home-promo-items">
+        <img alt="" src="{{media url="wysiwyg/b_f9ed6629929ab327873b36ea723cc94699a1a6bd.jpg"}}" />
+        <img alt="" src="{{media url="wysiwyg/b_c4ecf439c395a9b7603ebbaf71729a82008967cc.jpg"}}" />
+        <img alt="" src="{{media url="wysiwyg/b_c65e190bfaf249ea3dd0add40b2c21e4ee0f1a88.jpg"}}" />
+        <img alt="" src="{{media url="wysiwyg/b_2a1af71fab9068178fe108f022253078df051fcf.jpg"}}" />
+        <img alt="" src="{{media url="wysiwyg/b_dd99fe8e9467d3dfa98214bd5c8ccebbb553fc60.png"}}" />
+        <img alt="" src="{{media url="wysiwyg/b_cff452b7c2139c816e94465e326f2e287325d835.jpg"}}" />
+        <img alt="" src="{{media url="wysiwyg/b_02aaf300f67d35ba03c7a95664dd6c39924189f3.jpg"}}" />
+    </div>
+</div>
+<div class="home-viewed">{{widget type="reports/product_widget_viewed" page_size="4" template="reports/widget/viewed/content/viewed_grid.phtml"}}</div>
+*/
+?>
+<script type="text/javascript">Slider.init('home-promo');</script>
