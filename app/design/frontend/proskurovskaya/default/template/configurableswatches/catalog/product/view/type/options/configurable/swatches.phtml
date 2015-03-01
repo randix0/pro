@@ -41,12 +41,14 @@ $_id = $_attribute->getAttributeId();
 
 $_swatchArray = $_config->attributes->$_id;
 ?>
+<?php /*
 <dt class="swatch-attr">
     <label id="<?php echo $_attrCode ?>_label" class="required">
         <em>*</em><?php echo $_attribute->getLabel() ?>:
         <span id="select_label_<?php echo $_attrCode ?>" class="select-label"></span>
     </label>
 </dt>
+*/ ?>
 <dd class="clearfix swatch-attr<?php if ($_attribute->decoratedIsLast) echo ' last'; ?>">
     <div class="input-box">
         <select name="super_attribute[<?php echo $_attribute->getAttributeId() ?>]" id="attribute<?php echo $_attribute->getAttributeId() ?>" class="required-entry super-attribute-select no-display swatch-select">
@@ -58,7 +60,7 @@ $_swatchArray = $_config->attributes->$_id;
                    style="height: <?php echo $_swatchOuterHeight ?>px; width: <?php echo $_swatchOuterWidth ?>px;"
                     onclick="$('configurable_swatch_<?php echo $_attrCode ?>').toggleClassName('active');">
                 <span class="swatch-label" style="height: <?php echo $_swatchInnerHeight ?>px; width: <?php echo $_swatchInnerWidth ?>px; line-height: <?php echo $_swatchInnerHeight ?>px;">
-                    <?php echo $this->__('Choose ' . $_attrCode) ?>
+                    <?php echo $_attribute->getLabel() ?>
                  </span>
                     <span class="x">X</span>
                 </a>
